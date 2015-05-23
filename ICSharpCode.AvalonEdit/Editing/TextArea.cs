@@ -632,7 +632,8 @@ namespace ICSharpCode.AvalonEdit.Editing
 		void ApplyScrollInfo()
 		{
 			if (scrollInfo != null) {
-				scrollInfo.ScrollOwner = scrollOwner;
+				if (scrollOwner != null)
+					scrollInfo.ScrollOwner = scrollOwner;
 				scrollInfo.CanVerticallyScroll = canVerticallyScroll;
 				scrollInfo.CanHorizontallyScroll = canHorizontallyScroll;
 				scrollOwner = null;
