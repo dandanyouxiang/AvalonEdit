@@ -1249,7 +1249,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 						if (currentBrush != null) {
 							BackgroundGeometryBuilder builder = new BackgroundGeometryBuilder();
 							builder.AlignToWholePixels = true;
-							builder.CornerRadius = 3;
+							builder.CornerRadius = 0;
 							foreach (var rect in BackgroundGeometryBuilder.GetRectsFromVisualSegment(this, line, startVC, startVC + length))
 								builder.AddRectangle(this, rect);
 							Geometry geometry = builder.CreateGeometry();
@@ -1267,7 +1267,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 				if (currentBrush != null) {
 					BackgroundGeometryBuilder builder = new BackgroundGeometryBuilder();
 					builder.AlignToWholePixels = true;
-					builder.CornerRadius = 3;
+					builder.CornerRadius = 0;
 					foreach (var rect in BackgroundGeometryBuilder.GetRectsFromVisualSegment(this, line, startVC, startVC + length))
 						builder.AddRectangle(this, rect);
 					Geometry geometry = builder.CreateGeometry();
