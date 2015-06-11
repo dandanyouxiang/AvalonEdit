@@ -106,7 +106,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 				return new TabTextElement(CurrentContext.TextView.cachedElements.GetTextForNonPrintableCharacter("\u00BB", CurrentContext));
 			} else if (ShowBoxForControlCharacters && char.IsControl(c)) {
 				var p = new VisualLineElementTextRunProperties(CurrentContext.GlobalTextRunProperties);
-				p.SetForegroundBrush(Brushes.White);
+				p.SetForegroundBrush(SpecialCharacterTextRunOptions.ForegroundBrush ?? SpecialCharacterTextRunOptions.DefaultForegroundBrush);
 				var textFormatter = TextFormatterFactory.Create(CurrentContext.TextView);
 				var text = FormattedTextElement.PrepareText(textFormatter,
 				                                            TextUtilities.GetControlCharacterName(c), p);
@@ -253,7 +253,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 				Point newOrigin = new Point(origin.X + 1.5, origin.Y);
 				var metrics = base.Format(double.PositiveInfinity);
 				Rect r = new Rect(newOrigin.X - 0.5, newOrigin.Y - metrics.Baseline, metrics.Width + 2, metrics.Height);
-				drawingContext.DrawRoundedRectangle(SpecialCharacterTextRunOptions.Brush ?? SpecialCharacterTextRunOptions.DefaultBrush, null, r, 2.5, 2.5);
+				drawingContext.DrawRoundedRectangle(SpecialCharacterTextRunOptions.BackgroundBrush ?? SpecialCharacterTextRunOptions.DefaultBackgroundBrush, null, r, 2.5, 2.5);
 				base.Draw(drawingContext, newOrigin, rightToLeft, sideways);
 			}
 			
@@ -281,14 +281,21 @@ namespace ICSharpCode.AvalonEdit.Rendering
 		/// <summary>
 		/// Brush used by SpecialCharacterTextRun
 		/// </summary>
-		public static Brush Brush;
+		public static Brush BackgroundBrush;
 
-		internal static Brush DefaultBrush;
+		/// <summary>
+		/// Brush used by SingleCharacterElementGenerator
+		/// </summary>
+		public static Brush ForegroundBrush;
+
+		internal static Brush DefaultBackgroundBrush;
+		internal static Brush DefaultForegroundBrush = Brushes.White;
 
 		static SpecialCharacterTextRunOptions()
 		{
-			Brush = DefaultBrush = new SolidColorBrush(Color.FromArgb(200, 128, 128, 128));
-			Brush.Freeze();
+			BackgroundBrush = DefaultBackgroundBrush = new SolidColorBrush(Color.FromArgb(200, 128, 128, 128));
+			BackgroundBrush.Freeze();
+			ForegroundBrush = DefaultForegroundBrush;
 		}
 	}
 }
