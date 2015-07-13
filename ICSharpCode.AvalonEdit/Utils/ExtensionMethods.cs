@@ -220,18 +220,18 @@ namespace ICSharpCode.AvalonEdit.Utils
 		[Conditional("DEBUG")]
 		public static void CheckIsFrozen(Freezable f)
 		{
-			if (f != null && !f.IsFrozen)
-				Debug.WriteLine("Performance warning: Not frozen: " + f.ToString());
+// 			if (f != null && !f.IsFrozen)
+// 				Debug.WriteLine("Performance warning: Not frozen: " + f.ToString());
 		}
 		
 		[Conditional("DEBUG")]
 		public static void Log(bool condition, string format, params object[] args)
 		{
-			if (condition) {
-				string output = DateTime.Now.ToString("hh:MM:ss") + ": " + string.Format(format, args) + Environment.NewLine + Environment.StackTrace;
-				Console.WriteLine(output);
-				Debug.WriteLine(output);
-			}
+// 			if (condition) {
+// 				string output = DateTime.Now.ToString("hh:MM:ss") + ": " + string.Format(format, args) + Environment.NewLine + Environment.StackTrace;
+// 				Console.WriteLine(output);
+// 				Debug.WriteLine(output);
+// 			}
 		}
 	}
 }

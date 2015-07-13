@@ -885,7 +885,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 			// Sometimes we still have invalid lines after UpdateLayout - work around the problem
 			// by calling MeasureOverride directly.
 			if (!VisualLinesValid) {
-				Debug.WriteLine("UpdateLayout() failed in EnsureVisualLines");
+				//Debug.WriteLine("UpdateLayout() failed in EnsureVisualLines");
 				MeasureOverride(lastAvailableSize);
 			}
 			if (!VisualLinesValid)
@@ -954,7 +954,9 @@ namespace ICSharpCode.AvalonEdit.Rendering
 				}
 			}
 			
-			textLayer.SetVisualLines(visibleVisualLines);
+			// Can be null here
+			if (visibleVisualLines != null)
+				textLayer.SetVisualLines(visibleVisualLines);
 			
 			SetScrollData(availableSize,
 			              new Size(maxWidth, heightTreeHeight),

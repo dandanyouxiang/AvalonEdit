@@ -68,8 +68,8 @@ namespace ICSharpCode.AvalonEdit.Rendering
 					return CreateTextRunForNewLine();
 				}
 				return new TextEndOfParagraph(1);
-			} catch (Exception ex) {
-				Debug.WriteLine(ex.ToString());
+			} catch (Exception) {
+				//Debug.WriteLine(ex.ToString());
 				throw;
 			}
 		}
@@ -110,8 +110,8 @@ namespace ICSharpCode.AvalonEdit.Rendering
 				}
 				CharacterBufferRange empty = CharacterBufferRange.Empty;
 				return new TextSpan<CultureSpecificCharacterBufferRange>(empty.Length, new CultureSpecificCharacterBufferRange(null, empty));
-			} catch (Exception ex) {
-				Debug.WriteLine(ex.ToString());
+			} catch (Exception) {
+				//Debug.WriteLine(ex.ToString());
 				throw;
 			}
 		}

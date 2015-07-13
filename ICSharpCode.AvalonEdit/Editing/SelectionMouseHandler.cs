@@ -224,10 +224,10 @@ namespace ICSharpCode.AvalonEdit.Editing
 				if (effect != DragDropEffects.None) {
 					int start = textArea.Caret.Offset;
 					if (mode == SelectionMode.Drag && textArea.Selection.Contains(start)) {
-						Debug.WriteLine("Drop: did not drop: drop target is inside selection");
+						//Debug.WriteLine("Drop: did not drop: drop target is inside selection");
 						e.Effects = DragDropEffects.None;
 					} else {
-						Debug.WriteLine("Drop: insert at " + start);
+						//Debug.WriteLine("Drop: insert at " + start);
 						
 						var pastingEventArgs = new DataObjectPastingEventArgs(e.Data, true, DataFormats.UnicodeText);
 						textArea.RaiseEvent(pastingEventArgs);
@@ -336,12 +336,12 @@ namespace ICSharpCode.AvalonEdit.Editing
 			using (textArea.AllowCaretOutsideSelection()) {
 				var oldCaretPosition = textArea.Caret.Position;
 				try {
-					Debug.WriteLine("DoDragDrop with allowedEffects=" + allowedEffects);
+					//Debug.WriteLine("DoDragDrop with allowedEffects=" + allowedEffects);
 					resultEffect = DragDrop.DoDragDrop(textArea, dataObject, allowedEffects);
-					Debug.WriteLine("DoDragDrop done, resultEffect=" + resultEffect);
-				} catch (COMException ex) {
+					//Debug.WriteLine("DoDragDrop done, resultEffect=" + resultEffect);
+				} catch (COMException) {
 					// ignore COM errors - don't crash on badly implemented drop targets
-					Debug.WriteLine("DoDragDrop failed: " + ex.ToString());
+					//Debug.WriteLine("DoDragDrop failed: " + ex.ToString());
 					return;
 				}
 				if (resultEffect == DragDropEffects.None) {

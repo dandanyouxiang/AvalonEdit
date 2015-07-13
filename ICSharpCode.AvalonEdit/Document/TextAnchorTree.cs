@@ -74,7 +74,7 @@ namespace ICSharpCode.AvalonEdit.Document
 		[Conditional("DEBUG")]
 		static void Log(string text)
 		{
-			Debug.WriteLine("TextAnchorTree: " + text);
+			//Debug.WriteLine("TextAnchorTree: " + text);
 		}
 		
 		#region Insert Text
