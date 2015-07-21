@@ -194,9 +194,6 @@ namespace ICSharpCode.AvalonEdit.Document
 		/// <inheritdoc cref="ITextAnchor" select="remarks|example"/>
 		ITextAnchor CreateAnchor(int offset);
 		
-// TODO: Commented out so VS2015 RC's XAML editor won't crash. Remove the #if false if VS2015's XAML
-// editor is less buggy.
-#if false
 		/// <summary>
 		/// Gets the name of the file the document is stored in.
 		/// Could also be a non-existent dummy file name or null if no name has been set.
@@ -207,7 +204,6 @@ namespace ICSharpCode.AvalonEdit.Document
 		/// Fired when the file name of the document changes.
 		/// </summary>
 		event EventHandler FileNameChanged;
-#endif
 	}
 	
 	/// <summary>

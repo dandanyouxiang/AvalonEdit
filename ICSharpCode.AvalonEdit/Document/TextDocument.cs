@@ -1126,8 +1126,6 @@ namespace ICSharpCode.AvalonEdit.Document
 		#endregion
 		
 		#region FileName
-// TODO: Commented out. See IDocument for more info
-#if false
 		string fileName;
 		
 		/// <inheritdoc/>
@@ -1150,7 +1148,6 @@ namespace ICSharpCode.AvalonEdit.Document
 				}
 			}
 		}
-#endif
 		#endregion
 	}
 }
