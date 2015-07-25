@@ -77,6 +77,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 		{
 			TextView textView = this.TextView;
 			Size renderSize = this.RenderSize;
+			double w = renderSize.Width / maxLineNumberLength;
 			if (textView != null && textView.VisualLinesValid) {
 				var foreground = (Brush)GetValue(Control.ForegroundProperty);
 				foreach (VisualLine line in textView.VisualLines) {
@@ -87,7 +88,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 						typeface, emSize, foreground
 					);
 					double y = line.GetTextLineVisualYPosition(line.TextLines[0], VisualYPosition.TextTop);
-					drawingContext.DrawText(text, new Point(renderSize.Width - text.Width, y - textView.VerticalOffset));
+					drawingContext.DrawText(text, new Point(renderSize.Width - text.Width - w, y - textView.VerticalOffset));
 				}
 			}
 		}
@@ -146,12 +147,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 		void OnDocumentLineCountChanged()
 		{
 			int documentLineCount = Document != null ? Document.LineCount : 1;
-			int newLength = documentLineCount.ToString(CultureInfo.CurrentCulture).Length;
-			
-			// The margin looks too small when there is only one digit, so always reserve space for
-			// at least two digits
-			if (newLength < 2)
-				newLength = 2;
+			int newLength = documentLineCount.ToString(CultureInfo.CurrentCulture).Length + 2;
 			
 			if (newLength != maxLineNumberLength) {
 				maxLineNumberLength = newLength;
