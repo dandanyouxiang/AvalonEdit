@@ -279,6 +279,7 @@
     <Compile Include="Rendering\GlobalTextRunProperties.cs">
       <DependentUpon>TextView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rendering\GlyphRunFormatter.cs" />
     <Compile Include="Rendering\HeightTree.cs" />
     <Compile Include="Rendering\HeightTreeLineNode.cs">
       <DependentUpon>HeightTree.cs</DependentUpon>

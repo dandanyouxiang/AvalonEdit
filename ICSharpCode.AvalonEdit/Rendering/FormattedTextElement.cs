@@ -100,7 +100,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 		/// <summary>
 		/// Constructs a TextLine from a simple text.
 		/// </summary>
-		public static TextLine PrepareText(TextFormatter formatter, string text, TextRunProperties properties)
+		internal static TextLine PrepareText(ITextFormatter formatter, string text, TextRunProperties properties)
 		{
 			if (formatter == null)
 				throw new ArgumentNullException("formatter");

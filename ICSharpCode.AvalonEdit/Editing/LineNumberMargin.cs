@@ -61,15 +61,16 @@ namespace ICSharpCode.AvalonEdit.Editing
 		{
 			typeface = this.CreateTypeface();
 			emSize = (double)GetValue(TextBlock.FontSizeProperty);
-			
-			FormattedText text = TextFormatterFactory.CreateFormattedText(
+
+			using (var text = TextFormatterFactory.CreateTextLine(
 				this,
 				new string('9', maxLineNumberLength),
 				typeface,
 				emSize,
 				(Brush)GetValue(Control.ForegroundProperty)
-			);
-			return new Size(text.Width, 0);
+			)) {
+				return new Size(text.Width, 0);
+			}
 		}
 		
 		/// <inheritdoc/>
@@ -82,13 +83,14 @@ namespace ICSharpCode.AvalonEdit.Editing
 				var foreground = (Brush)GetValue(Control.ForegroundProperty);
 				foreach (VisualLine line in textView.VisualLines) {
 					int lineNumber = line.FirstDocumentLine.LineNumber;
-					FormattedText text = TextFormatterFactory.CreateFormattedText(
+					using (var text = TextFormatterFactory.CreateTextLine(
 						this,
 						lineNumber.ToString(CultureInfo.CurrentCulture),
 						typeface, emSize, foreground
-					);
-					double y = line.GetTextLineVisualYPosition(line.TextLines[0], VisualYPosition.TextTop);
-					drawingContext.DrawText(text, new Point(renderSize.Width - text.Width - w, y - textView.VerticalOffset));
+					)) {
+						double y = line.GetTextLineVisualYPosition(line.TextLines[0], VisualYPosition.TextTop);
+						text.Draw(drawingContext, new Point(renderSize.Width - text.Width - w, y - textView.VerticalOffset), InvertAxes.None);
+					}
 				}
 			}
 		}
