@@ -26,7 +26,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 {
 	sealed class TextViewCachedElements : IDisposable
 	{
-		TextFormatter formatter;
+		ITextFormatter formatter;
 		Dictionary<string, TextLine> nonPrintableCharacterTexts;
 		
 		public TextLine GetTextForNonPrintableCharacter(string text, ITextRunConstructionContext context)

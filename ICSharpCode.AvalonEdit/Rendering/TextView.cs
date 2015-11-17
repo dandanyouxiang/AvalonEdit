@@ -1038,7 +1038,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 		#endregion
 		
 		#region BuildVisualLine
-		TextFormatter formatter;
+		ITextFormatter formatter;
 		internal TextViewCachedElements cachedElements;
 		
 		TextRunProperties CreateGlobalTextRunProperties()
@@ -1294,8 +1294,8 @@ namespace ICSharpCode.AvalonEdit.Rendering
 			Point pos = new Point(-scrollOffset.X, -clippedPixelsOnTop);
 			foreach (VisualLineDrawingVisual visual in visuals) {
 				TranslateTransform t = visual.Transform as TranslateTransform;
-				if (t == null || t.X != pos.X || t.Y != pos.Y) {
-					visual.Transform = new TranslateTransform(pos.X, pos.Y);
+				if (t == null || t.X != (int)pos.X || t.Y != (int)pos.Y) {
+					visual.Transform = new TranslateTransform((int)pos.X, (int)pos.Y);
 					visual.Transform.Freeze();
 				}
 				pos.Y += visual.Height;
