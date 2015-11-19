@@ -107,6 +107,9 @@ namespace ICSharpCode.AvalonEdit.Utils {
 		}
 #endif
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public static TextFormatterProvider TextFormatterProvider = TextFormatterProvider.BuiltIn;
 
 		/// <summary>
@@ -150,6 +153,15 @@ namespace ICSharpCode.AvalonEdit.Utils {
 #endif
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="element"></param>
+		/// <param name="text"></param>
+		/// <param name="typeface"></param>
+		/// <param name="emSize"></param>
+		/// <param name="foreground"></param>
+		/// <returns></returns>
 		public static TextLine CreateTextLine(FrameworkElement element, string text, Typeface typeface, double? emSize, Brush foreground) {
 			if (element == null)
 				throw new ArgumentNullException("element");
