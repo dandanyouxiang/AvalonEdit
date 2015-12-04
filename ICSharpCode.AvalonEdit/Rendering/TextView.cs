@@ -144,10 +144,10 @@ namespace ICSharpCode.AvalonEdit.Rendering
 			if (DocumentChanged != null)
 				DocumentChanged(this, EventArgs.Empty);
 		}
-		
+
 		/// <summary>
 		/// Recreates the text formatter that is used internally
-		/// by calling <see cref="TextFormatterFactory.Create"/>.
+		/// by calling <see cref="TextFormatterFactory.Create(DependencyObject)"/>.
 		/// </summary>
 		void RecreateTextFormatter()
 		{

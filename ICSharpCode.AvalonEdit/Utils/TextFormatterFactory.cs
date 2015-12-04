@@ -110,16 +110,23 @@ namespace ICSharpCode.AvalonEdit.Utils {
 		/// <summary>
 		/// 
 		/// </summary>
-		public static TextFormatterProvider TextFormatterProvider = TextFormatterProvider.BuiltIn;
+		public static TextFormatterProvider DefaultTextFormatterProvider = TextFormatterProvider.BuiltIn;
+
+		internal static ITextFormatter Create(DependencyObject owner) {
+			return Create(owner, DefaultTextFormatterProvider);
+		}
 
 		/// <summary>
 		/// Creates a <see cref="TextFormatter"/> using the formatting mode used by the specified owner object.
 		/// </summary>
-		public static ITextFormatter Create(DependencyObject owner) {
+		/// <param name="owner"></param>
+		/// <param name="provider"></param>
+		/// <returns></returns>
+		public static ITextFormatter Create(DependencyObject owner, TextFormatterProvider provider) {
 			if (owner == null)
 				throw new ArgumentNullException("owner");
 #if DOTNET4
-			switch (TextFormatterProvider) {
+			switch (provider) {
 				case TextFormatterProvider.BuiltIn:
 					return new WpfTextFormatter(TextOptions.GetTextFormattingMode(owner));
 				case TextFormatterProvider.GlyphRunFormatter:
@@ -132,7 +139,7 @@ namespace ICSharpCode.AvalonEdit.Utils {
 				formattingMode = owner.GetValue(TextFormattingModeProperty);
 			}
 
-			switch (TextFormatterProvider) {
+			switch (provider) {
 				case TextFormatterProvider.BuiltIn:
 					return new WpfTextFormatter(formattingMode);
 				case TextFormatterProvider.GlyphRunFormatter:
