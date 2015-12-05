@@ -232,7 +232,9 @@ namespace ICSharpCode.AvalonEdit.Search
 		/// </summary>
 		public void Uninstall()
 		{
+#pragma warning disable 0618 // Type or member is obsolete
 			CloseAndRemove();
+#pragma warning restore 0618 // Type or member is obsolete
 			textArea.DefaultInputHandler.NestedInputHandlers.Remove(handler);
 		}
 		
